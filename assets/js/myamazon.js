@@ -19,8 +19,7 @@ function addItem(event) {
   let qtty = Number(parent.querySelector('.qtty').textContent);
   parent.querySelector('.qtty').textContent = qtty + 1;
 
-  console.log(item);
-  return item.qtty;
+  updateBasket();
 }
 
 function removeItem(event) {
@@ -34,8 +33,7 @@ function removeItem(event) {
     parent.querySelector('.qtty').textContent = qtty - 1;
   }
 
-  console.log(item);
-  return item.qtty;
+  updateBasket()
 }
 
 function render_list_of_items() {
@@ -91,19 +89,37 @@ function render_list_of_items() {
 }
 
 function renderBasket() {
-  let basketDiv = document.createElement('div');
-  basketDiv.id = 'basket';
+  let basket = document.getElementById('basketDiv');
+
   //total number of items
-  let itemsTotalNumber;
+  let totalNumberDiv = document.createElement('div');
+  totalNumberDiv.id = 'totalNumberDiv';
+  let totalNumberText = document.createTextNode(0);
+  totalNumberDiv.appendChild(totalNumberText);
+  basket.appendChild(totalNumberDiv);
+
   //total price
+  let totalPriceDiv = document.createElement('div');
+  totalPriceDiv.id = 'totalPriceDiv';
+  let totalPriceText = document.createTextNode(0);
+  totalPriceDiv.appendChild(totalPriceText);
+  basket.appendChild(totalPriceDiv);
 }
 
 function updateBasket() {
+  let totalNumber = data.reduce((acc, a) => acc + a.qtty, 0);
+  let totalPrice = data.reduce((acc, a) => acc + a.qtty*a.price, 0);
+  totalPrice = (Math.round(totalPrice * 100) / 100).toFixed(2); // round to two decimal places
 
+  let totalNumberDiv = document.getElementById('totalNumberDiv');
+  console.log(totalNumberDiv.textContent);
+  totalNumberDiv.textContent = totalNumber;
+
+  let totalPriceDiv = document.getElementById('totalPriceDiv');
+  totalPriceDiv.textContent = totalPrice;
 }
 
 (function init() {
   renderBasket();
   render_list_of_items();
-  updateBasket();
 })();
