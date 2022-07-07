@@ -46,7 +46,7 @@ function render_list_of_items() {
 
     let nameDiv = document.createElement('div');
     nameDiv.classList.add('name');
-    let nameText = document.createTextNode(name);
+    let nameText = document.createTextNode(capitalizeFirstLetter(name));
     nameDiv.appendChild(nameText);
     item.appendChild(nameDiv);
 
@@ -117,6 +117,10 @@ function updateBasket() {
 
   let totalPriceDiv = document.getElementById('totalPriceDiv');
   totalPriceDiv.textContent = 'Total Price: ' + totalPrice + ' $';
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 (function init() {

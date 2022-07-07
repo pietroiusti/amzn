@@ -24,5 +24,6 @@ body {
 .item {
   background-color: #d9fceb;
   margin: 10px;
+  padding: 10px;
   border-radius: 25px;
 }
