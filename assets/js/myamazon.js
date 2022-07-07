@@ -113,7 +113,6 @@ function updateBasket() {
   totalPrice = (Math.round(totalPrice * 100) / 100).toFixed(2); // round to two decimal places
 
   let totalNumberDiv = document.getElementById('totalNumberDiv');
-  console.log(totalNumberDiv.textContent);
   totalNumberDiv.textContent = 'Total number of items: ' + totalNumber;
 
   let totalPriceDiv = document.getElementById('totalPriceDiv');
