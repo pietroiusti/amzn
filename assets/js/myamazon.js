@@ -12,21 +12,30 @@ var data = [
 ];
 
 function addItem(event) {
-  let name = event.target.parentElement.id;
+  let parent = event.target.parentElement;
+  let name = parent.id;
   let item = data.find((item) => item.name === name);
   item.qtty += 1;
-  // todo: update basket
+  let qtty = Number(parent.querySelector('.qtty').textContent);
+  parent.querySelector('.qtty').textContent = qtty + 1;
+
   console.log(item);
+  return item.qtty;
 }
 
 function removeItem(event) {
-  let name = event.target.parentElement.id;
+  let parent = event.target.parentElement;
+  let name = parent.id;
   let item = data.find((item) => item.name === name);
   if (item.qtty > 0) {
     item.qtty -= 1;
+    // render new qtty
+    let qtty = Number(parent.querySelector('.qtty').textContent);
+    parent.querySelector('.qtty').textContent = qtty - 1;
   }
-  // todo: update basket
+
   console.log(item);
+  return item.qtty;
 }
 
 function render_list_of_items() {
@@ -81,4 +90,20 @@ function render_list_of_items() {
   }
 }
 
-render_list_of_items();
+function renderBasket() {
+  let basketDiv = document.createElement('div');
+  basketDiv.id = 'basket';
+  //total number of items
+  let itemsTotalNumber;
+  //total price
+}
+
+function updateBasket() {
+
+}
+
+(function init() {
+  renderBasket();
+  render_list_of_items();
+  updateBasket();
+})();
