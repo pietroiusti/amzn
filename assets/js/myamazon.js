@@ -40,6 +40,7 @@ function render_list_of_items() {
   let itemList = document.getElementById('itemList');
   for (let i = 0; i < data.length; i++) {
     let item = document.createElement('div');
+    item.classList.add('item');
     let name = data[i].name;
     item.id = name;
 
@@ -51,7 +52,7 @@ function render_list_of_items() {
 
     let priceDiv = document.createElement('div');
     priceDiv.classList.add('price');
-    let priceText = document.createTextNode(data[i].price);
+    let priceText = document.createTextNode(`${data[i].price} $`);
     priceDiv.appendChild(priceText);
     item.appendChild(priceDiv);
 
@@ -94,14 +95,14 @@ function renderBasket() {
   //total number of items
   let totalNumberDiv = document.createElement('div');
   totalNumberDiv.id = 'totalNumberDiv';
-  let totalNumberText = document.createTextNode(0);
+  let totalNumberText = document.createTextNode('Total number of items: 0');
   totalNumberDiv.appendChild(totalNumberText);
   basket.appendChild(totalNumberDiv);
 
   //total price
   let totalPriceDiv = document.createElement('div');
   totalPriceDiv.id = 'totalPriceDiv';
-  let totalPriceText = document.createTextNode(0);
+  let totalPriceText = document.createTextNode('Total Price: 0.00 $');
   totalPriceDiv.appendChild(totalPriceText);
   basket.appendChild(totalPriceDiv);
 }
@@ -113,10 +114,10 @@ function updateBasket() {
 
   let totalNumberDiv = document.getElementById('totalNumberDiv');
   console.log(totalNumberDiv.textContent);
-  totalNumberDiv.textContent = totalNumber;
+  totalNumberDiv.textContent = 'Total number of items: ' + totalNumber;
 
   let totalPriceDiv = document.getElementById('totalPriceDiv');
-  totalPriceDiv.textContent = totalPrice;
+  totalPriceDiv.textContent = 'Total Price: ' + totalPrice + ' $';
 }
 
 (function init() {
