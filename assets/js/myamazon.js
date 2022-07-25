@@ -11,6 +11,26 @@ var data = [
   {name: 'chipsahoy', price: 2.20, qtty: 0}
 ];
 
+// BASIC EXAMPLE
+class Item extends HTMLElement {
+  constructor() {
+    super();
+  }
+
+  connectedCallback() {
+    this.innerHTML = `
+        <span class="${this.getAttribute('name')}">This is a span</span>
+    `;
+  }
+}
+customElements.define('list-item', Item);
+// now we can add to the html:  <list-item attribute=value></list-item>
+// or we can use js:
+let foo = document.createElement('list-item');
+foo.setAttribute('name', 'foobarbaz');
+document.getElementsByTagName('body')[0].appendChild(foo);
+
+
 function addItem(event) {
   let parent = event.target.parentElement;
   let name = parent.id;
@@ -123,7 +143,7 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-(function init() {
-  renderBasket();
-  render_list_of_items();
-})();
+// (function init() {
+//   renderBasket();
+//   render_list_of_items();
+// })();
